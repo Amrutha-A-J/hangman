@@ -1,15 +1,27 @@
-import React from 'react';
+import React from "react";
 
-const GameArea = ({ selectedCountry, guessedLetters }) => {
+function GameArea({ selectedCountry, guessedLetters }) {
+    // Split the country name by spaces
+    const wordGroups = selectedCountry.split(" ");
+
     return (
         <div className="game-area">
-            {selectedCountry.split('').map((letter, index) => (
-                <div key={index} className="letter-box">
-                    {guessedLetters.includes(letter) ? letter : "__"}
+            {wordGroups.map((word, index) => (
+                <div key={index} className="word-group">
+                    {word.split("").map((letter, idx) => (
+                        <div
+                            key={idx}
+                            className={`letter-box ${guessedLetters.includes(letter) ? "revealed" : ""}`}
+                        >
+                            {guessedLetters.includes(letter) ? letter : ""}
+                        </div>
+                    ))}
+                    {/* Add a space between word groups */}
+                    <div className="letter-box space"></div>
                 </div>
             ))}
         </div>
     );
-};
+}
 
 export default GameArea;

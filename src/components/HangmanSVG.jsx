@@ -2,7 +2,7 @@ import React from 'react';
 
 const HangmanSVG = ({ errors }) => {
     return (
-        <svg className="svg-area" width="290" height="400" viewBox="0 0 50 50">
+        <svg className="svg-area" width="60vw" height="400" viewBox="0 0 50 50">
             <g id="pole">
                 <line x1="15" y1="50" x2="50" y2="50" style={{ stroke: 'rgb(255,0,0)', strokeWidth: 2 }} />
                 <line x1="45" y1="50" x2="45" y2="5" style={{ stroke: 'rgb(255,0,0)', strokeWidth: 1 }} />

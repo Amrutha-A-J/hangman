@@ -202,30 +202,52 @@ function App() {
 	const [guessedLetters, setGuessedLetters] = useState([]);
 	const [errors, setErrors] = useState([]);
 	const [gameOver, setGameOver] = useState(false);
+	const [gameWon, setGameWon] = useState(false);
 
-	useEffect(() => {
-		setSelectedCountry(countries[Math.floor(Math.random() * countries.length)].toUpperCase());
-	}, []);
-
-	const handleKeyPress = (event) => {
-		const keyChar = event.key.toUpperCase();
-		if (/[A-Z]/.test(keyChar) && !guessedLetters.includes(keyChar) && !errors.includes(keyChar)) {
-			if (selectedCountry.includes(keyChar)) {
-				setGuessedLetters([...guessedLetters, keyChar]);
-			} else {
-				setErrors([...errors, keyChar]);
-				if (errors.length + 1 >= 6) {
-					setGameOver(true);
-				}
-			}
-		}
-	};
-
-	const restartGame = () => {
+	const startNewGame = () => {
+		const country = countries[Math.floor(Math.random() * countries.length)].toUpperCase();
+		setSelectedCountry(country);
 		setGuessedLetters([]);
 		setErrors([]);
 		setGameOver(false);
-		setSelectedCountry(countries[Math.floor(Math.random() * countries.length)].toUpperCase());
+		setGameWon(false);
+	};
+
+	useEffect(() => {
+		startNewGame(); // Start a new game on initial load
+	}, []);
+
+	useEffect(() => {
+		// Only check for win if selectedCountry is not empty
+		if (selectedCountry) {
+			const hasWon = selectedCountry.split("").every(letter =>
+				guessedLetters.includes(letter) || letter === " "
+			);
+
+			if (hasWon) {
+				setGameWon(true);
+				setGameOver(true); // End the game if won
+			}
+		}
+	}, [guessedLetters, selectedCountry]);
+
+	const handleKeyPress = (event) => {
+		if (gameOver) return;
+
+		const keyChar = event.key.toUpperCase();
+		if (/[A-Z]/.test(keyChar) && !guessedLetters.includes(keyChar) && !errors.includes(keyChar)) {
+			if (selectedCountry.includes(keyChar)) {
+				setGuessedLetters(prevGuessedLetters => [...prevGuessedLetters, keyChar]);
+			} else {
+				setErrors(prevErrors => {
+					const updatedErrors = [...prevErrors, keyChar];
+					if (updatedErrors.length >= 6) {
+						setGameOver(true);
+					}
+					return updatedErrors;
+				});
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -233,16 +255,18 @@ function App() {
 		return () => {
 			document.removeEventListener('keyup', handleKeyPress);
 		};
-	}, [guessedLetters, errors]);
+	}, [guessedLetters, errors, gameOver]);
+
+	const shouldShowOverlay = gameOver || gameWon;
 
 	return (
 		<div className="app">
-			<Overlay restartGame={restartGame} gameOver={gameOver} />
+			{shouldShowOverlay && <Overlay restartGame={startNewGame} gameOver={gameOver} gameWon={gameWon} />}
 			<div className="game-container">
-				<h1>Guess this country! </h1>
+				<h1>Guess this country!</h1>
 				<GameArea selectedCountry={selectedCountry} guessedLetters={guessedLetters} />
-				<HangmanSVG errors={errors} />
 				<ErrorArea errors={errors} />
+				<HangmanSVG errors={errors} />
 			</div>
 		</div>
 	);
