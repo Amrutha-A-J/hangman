@@ -11,37 +11,37 @@ const HangmanSVG = ({ errors }) => {
             </g>
             {errors.length > 0 && (
                 <g id="head">
-                    <circle cx="28" cy="13" r="3" style={{ strokeWidth: 0.5, fill: 'none', stroke: 'rgb(255,0,0)' }} />
+                    <circle className={`draw ${errors.length > 0 ? 'animate' : ''}`} cx="28" cy="13" r="3" />
                 </g>
             )}
             {errors.length > 1 && (
                 <g id="hbody">
-                    <line x1="28" y1="16" x2="28" y2="28" style={{ strokeWidth: 0.5, stroke: 'rgb(255,0,0)' }} />
+                    <line className={`draw ${errors.length > 1 ? 'animate' : ''}`} x1="28" y1="16" x2="28" y2="28" />
                 </g>
             )}
             {errors.length > 2 && (
                 <g id="lhand">
-                    <line x1="28" y1="20" x2="23" y2="17" style={{ strokeWidth: 0.5, stroke: 'rgb(255,0,0)' }} />
+                    <line className={`draw ${errors.length > 2 ? 'animate' : ''}`} x1="28" y1="20" x2="23" y2="17" />
                 </g>
             )}
             {errors.length > 3 && (
                 <g id="rhand">
-                    <line x1="28" y1="20" x2="33" y2="17" style={{ strokeWidth: 0.5, stroke: 'rgb(255,0,0)' }} />
+                    <line className={`draw ${errors.length > 3 ? 'animate' : ''}`} x1="28" y1="20" x2="33" y2="17" />
                 </g>
             )}
             {errors.length > 4 && (
                 <g id="lleg">
-                    <line x1="28" y1="28" x2="23" y2="32" style={{ strokeWidth: 0.5, stroke: 'rgb(255,0,0)' }} />
+                    <line className={`draw ${errors.length > 4 ? 'animate' : ''}`} x1="28" y1="28" x2="23" y2="32" />
                 </g>
             )}
             {errors.length > 5 && (
                 <g id="rleg">
-                    <line x1="28" y1="28" x2="33" y2="32" style={{ strokeWidth: 0.5, stroke: 'rgb(255,0,0)' }} />
-                    <line x1="26" y1="12" x2="27" y2="13" style={{ strokeWidth: 0.2 }} />
-                    <line x1="29" y1="12" x2="30" y2="13" style={{ strokeWidth: 0.2 }} />
-                    <line x1="27" y1="12" x2="26" y2="13" style={{ strokeWidth: 0.2 }} />
-                    <line x1="30" y1="12" x2="29" y2="13" style={{ strokeWidth: 0.2 }} />
-                    <circle cx="28" cy="14" r="0.5" style={{ strokeWidth: 0.5 }} />
+                    <line className={`draw ${errors.length > 5 ? 'animate' : ''}`} x1="28" y1="28" x2="33" y2="32" />
+                    <line className={`draw ${errors.length > 5 ? 'animate' : ''}`} x1="26" y1="12" x2="27" y2="13" />
+                    <line className={`draw ${errors.length > 5 ? 'animate' : ''}`} x1="29" y1="12" x2="30" y2="13" />
+                    <line className={`draw ${errors.length > 5 ? 'animate' : ''}`} x1="27" y1="12" x2="26" y2="13" />
+                    <line className={`draw ${errors.length > 5 ? 'animate' : ''}`} x1="30" y1="12" x2="29" y2="13" />
+                    <circle className={`draw ${errors.length > 5 ? 'animate' : ''}`} cx="28" cy="14" r="0.5" />
                 </g>
             )}
         </svg>
