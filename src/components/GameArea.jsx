@@ -20,6 +20,15 @@ function GameArea({ selectedCountry, guessedLetters }) {
                     <div className="letter-box space"></div>
                 </div>
             ))}
+            {/* Hidden input field to trigger keyboard on mobile devices */}
+            <input
+                type="text"
+                className="hidden-input"
+                style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', width: '0', height: '0' }}
+                autoComplete="off"
+                aria-hidden="true"
+                onFocus={() => document.activeElement.blur()} // To prevent focusing on it
+            />
         </div>
     );
 }
