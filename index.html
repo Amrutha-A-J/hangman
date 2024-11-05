@@ -1,72 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>hangman</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body onload="createslots()" onkeyup="keycheck(event)">
-	<div id="overlay">
-		<button onclick="showfn()"><img src="images.png"></button>
-	</div>
-	<main id="maindiv">
-		<article class="container">
-			<section class="section1">
-				<div class="game-container">
-					<div class="game_area"></div>
-				</div>
-				<div class="entryarea">
-					<p>Enter your guess. Each key press is counted as an atttempt.</p>
-	
-					<input id="hidden-text" type="text" onload="document.getElementById('hidden-text').focus();"/>
-				</div>
-			</section>
-			<aside class="section2">
-				
-			<svg class="svgarea" width="290" height="400" viewbox="0 0 50 50">
-				<g id="pole">
-					<line x1="15" y1="50" x2="50" y2="50" style="stroke:rgb(255,0,0);stroke-width:2" />
-					<line x1="45" y1="50" x2="45" y2="5" style="stroke:rgb(255,0,0);stroke-width:1" />
-					<line x1="45" y1="5" x2="28" y2="5" style="stroke:rgb(255,0,0);stroke-width:1" />
-					<line x1="28" y1="5" x2="28" y2="10" style="stroke:rgb(255,0,0);stroke-width:1" />
-				</g>
-				<g id="head">
-					<circle cx="28" cy="13" r="3" style="stroke-width:0.5"></circle>
-				</g>
-				<g id="hbody">
-					<line x1="28" y1="16" x2="28" y2="28" style="stroke-width:0.5" />
-				</g>
-				<g id="lhand">
-					<line x1="28" y1="20" x2="23" y2="17" style="stroke-width:0.5" />
-				</g>
-				<g id="rhand">
-					<line x1="28" y1="20" x2="33" y2="17" style="stroke-width:0.5" />
-				</g>
-				<g id="lleg">
-					<line x1="28" y1="28" x2="23" y2="32" style="stroke-width:0.5" />
-				</g>
-				<g id="rleg">
-					<line x1="28" y1="28" x2="33" y2="32" style="stroke-width:0.5" />
-					<line x1="26" y1="12" x2="27" y2="13" style="stroke-width:0.2" />
-					<line x1="29" y1="12" x2="30" y2="13" style="stroke-width:0.2" />
-
-					<line x1="27" y1="12" x2="26" y2="13" style="stroke-width:0.2" />
-					<line x1="30" y1="12" x2="29" y2="13" style="stroke-width:0.2" />
-
-					<circle cx="28" cy="14" r="0.5" style="stroke-width:0.5"></circle>
-
-				</g>
-				<g id="dead">
-				</g>
-			</svg>
-
-			</aside>
-		</article>
-		<article class="section3">
-			<div class="error_Area">
-				
-			</div>
-		</article>
-	</main>
-<script src="js/script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script type="module" crossorigin src="/assets/index-Bueo0biG.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CjoUfqPx.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
