@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 
 function GameArea({ selectedCountry, guessedLetters }) {
+    const hiddenInputRef = useRef(null);
+
+    const handleFocus = () => {
+        hiddenInputRef.current.focus();
+    };
+
     // Split the country name by spaces
     const wordGroups = selectedCountry.split(" ");
 
     return (
-        <div className="game-area">
+        <div className="game-area" onClick={handleFocus}> {/* Add click handler to the game area */}
             {wordGroups.map((word, index) => (
                 <div key={index} className="word-group">
                     {word.split("").map((letter, idx) => (
@@ -20,14 +26,14 @@ function GameArea({ selectedCountry, guessedLetters }) {
                     <div className="letter-box space"></div>
                 </div>
             ))}
-            {/* Hidden input field to trigger keyboard on mobile devices */}
+
             <input
+                ref={hiddenInputRef} // Attach the ref to the input
                 type="text"
                 className="hidden-input"
                 style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', width: '0', height: '0' }}
                 autoComplete="off"
                 aria-hidden="true"
-                onFocus={() => document.activeElement.blur()} // To prevent focusing on it
             />
         </div>
     );
